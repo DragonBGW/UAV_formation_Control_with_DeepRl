@@ -114,8 +114,45 @@ Tests scalability on
 75 UAVs
 
 running benchmark -> python exp3_benchmark.py
+<img width="403" height="208" alt="image" src="https://github.com/user-attachments/assets/ac7944eb-22c3-4b30-a28d-77722499956b" />
+<img width="529" height="142" alt="image" src="https://github.com/user-attachments/assets/a9508ebe-f2ce-45b6-a984-19dd7552899a" />
 
+📊 Metrics Collected
+1️⃣ Completion Time
 
+What it measures:
+Time required to reach formation.
+Computational + convergence performance.
+
+Expected behavior:
+Time increases with swarm size.
+Ideally linear growth.
+
+If time:
+Explodes exponentially → scalability issue.
+Increases smoothly → acceptable scaling.
+
+2️⃣ Collision Count
+
+What it measures:
+Total number of safety violations.
+Quality of policy generalization to larger swarms.
+
+Expected behavior (paper):
+Near zero collisions.
+
+Observed in your reproduction:
+Collisions increase with swarm size.
+
+This indicates:
+Policy trained on small swarm does not generalize perfectly.
+Hierarchical control (used in paper) improves this.
+
+| Experiment | What It Tests            | What Success Looks Like               |
+| ---------- | ------------------------ | ------------------------------------- |
+| Exp-1      | Formation reconstruction | Smooth trajectories + stable distance |
+| Exp-2      | Robustness to failure    | Recovery without collapse             |
+| Exp-3      | Scalability              | Moderate time growth + low collisions |
 
 
 
